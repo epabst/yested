@@ -8,7 +8,8 @@ package net.yested.utils
 @native("Moment")
 class MomentJs {
     fun format(formatString: String? = null): String = noImpl
-    fun valueOf(): Long = noImpl
+    // This would be Long except that Kotlin's Long is a Javascript Object.
+    fun valueOf(): Number = noImpl
     fun millisecond(value: Int? = null): Int = noImpl
     fun second(value: Int? = null): Int = noImpl
     fun minute(value: Int? = null): Int = noImpl
@@ -37,7 +38,7 @@ class MomentJs {
      fun format(format: FormatString): String = moment.format(format.toString())
 
      val millisecondsSinceUnixEpoch: Long
-		get() = moment.valueOf()
+		get() = moment.valueOf().toLong()
 
      var unix: Int
         get() = moment.unix()
